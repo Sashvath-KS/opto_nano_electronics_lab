@@ -1,0 +1,112 @@
+=========================
+CONFIG GUIDE (IMPORTANT)
+=========================
+
+This file explains how to edit the 2 config files before running any PL experiment:
+
+  1. config_user.json   --> Change this for each experiment
+  2. config_setup.json  --> Change this ONLY if hardware/ports change
+
+
+=======================================
+1. config_user.json (experiment setup)
+=======================================
+
+Open "config_user.json" in any text editor and change these settings:
+
+  "experiment_type": Choose one of:
+      "pre_tuning"    --> Live plot, tune integration time
+      "steady_state"  --> Measure PL of 6 (or more) samples
+      "degradation"   --> Monitor PL over time (long-term)
+
+  "sample_count": 6
+      → Set number of samples (only used for steady_state)
+
+  "integration_time_ms": 500
+      → Integration time in milliseconds
+
+  "mask_range_nm": [700, 900]
+      → Wavelength range to plot/fit (optional)
+
+  "background_correction": true
+      → true = subtract dark signal using mirror
+
+  "normalization": Choose one of:
+      "none"            --> No normalization
+      "mirror"          --> Use mirror slot to measure laser power before PL
+      "beam_splitter"   --> Use beam splitter for continuous laser monitoring
+
+  "flywheel_mode": Choose one of:
+      "skip"        --> Don’t use flywheel (fastest mode)
+      "always_on"   --> Laser always on
+      "smart"       --> Laser blocked except during PL
+
+  "degradation_duration_s": 600
+      → Total time for degradation study (in seconds)
+
+  "sampling_interval_s": 2
+      → Time between PL measurements (in seconds)
+
+  "save_directory": "output"
+      → Folder to store CSVs and plots
+
+  "auto_configure_flywheel": true
+      → true = automatically detect mirror slot using power meter
+
+  "enable_averaging": true
+      → If true, average multiple readings for each measurement
+
+  "average_count": 100
+      → Number of readings to average (used if enable_averaging = true)
+
+  "repeated_bg": true
+      → For degradation only:
+        true = take new background before every reading
+        false = take one background at start and use throughout
+
+
+========================================
+2. config_setup.json (hardware settings)
+========================================
+
+ONLY change this file if:
+  - You move DLL files
+  - You plug instruments into different ports
+  - You change flywheel slot assignments
+
+Check these fields:
+-------------------
+
+- DLL path for spectrometer:
+    "dll_path": "C:/Path/To/TLCCS_64.dll"
+
+- Resource string for spectrometer:
+    "resource_string": "USB0::...::RAW"
+
+- DLL path for power meter:
+    "dll_path": "C:/Path/To/PM100D_64.dll"
+
+- VISA address for power meter:
+    "resource_string": "USB0::...::INSTR"
+
+- Flywheel slot_mapping:
+    {
+      "mirror": 1,
+      "beam_splitter": 2,
+      "empty": 3
+    }
+
+====================
+RUNNING THE PROGRAM
+====================
+
+After editing both config files:
+
+1. Save the files
+2. Open terminal in this folder
+3. Run:
+
+    python main.py
+
+Everything else happens automatically.
+

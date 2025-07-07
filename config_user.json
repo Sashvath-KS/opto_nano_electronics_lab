@@ -1,0 +1,16 @@
+{
+  "experiment_type": "degradation",
+  "sample_count": 2,
+  "integration_time_ms": 500,
+  "mask_range_nm": [690, 890],
+  "background_correction": true,
+  "normalization": "none",
+  "flywheel_mode": "smart",
+  "degradation_duration_s": 60,
+  "sampling_interval_s": 0.7,
+  "save_directory": "testing",
+  "auto_configure_flywheel": true,
+  "enable_averaging": false,
+  "average_count": 10,
+  "repeated_bg": false
+}

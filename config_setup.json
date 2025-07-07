@@ -1,0 +1,22 @@
+{
+  "spectrometer": {
+    "model": "CCS175",
+    "simulate": false,
+    "dll_path": "C:/Program Files/IVI Foundation/VISA/Win64/Bin/TLCCS_64.dll",
+    "resource_string": "USB0::0x1313::0x8087::M00414815::RAW"
+  },
+  "power_meter": {
+    "model": "PM100D",
+    "dll_path": "C:/Program Files/IVI Foundation/VISA/Win64/Bin/PM100D_64.dll",
+    "resource_string": "USB0::0x1313::0x8072::P2001387::0::INSTR"
+  },
+  "flywheel": {
+    "visa_address": "USB0::0x0957::0x1607::MY50002588::INSTR",
+    "slot_count": 6,
+    "slot_mapping": {
+      "mirror": 1,
+      "beam_splitter": 2,
+      "empty": 3
+    }
+  }
+}
